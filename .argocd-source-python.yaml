@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: image.repository
+    value: registry.cn-hangzhou.aliyuncs.com/imagehubs/hello-python-flask
+    forcestring: true
+  - name: image.tag
+    value: main-22fce96
+    forcestring: true

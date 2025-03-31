@@ -1,11 +1,11 @@
 # Default values for hello-java.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-profile: dev
+profile: prod
 
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/imagehubs/hello-python-flask
-  tag: main-22fce96
+  tag: latest
   pullPolicy: Always
 
 ingressClassName: nginx

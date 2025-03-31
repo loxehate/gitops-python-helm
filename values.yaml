@@ -1,0 +1,101 @@
+# Default values for hello-java.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+profile: prod
+
+image:
+  repository: registry.cn-hangzhou.aliyuncs.com/imagehubs/hello-world-flask:latest
+  pullPolicy: Always
+
+ingressClassName: nginx
+
+deployment:
+  minreplicaCount: 2
+  maxreplicaCount: 4
+  ports:
+  - name: http
+    containerPort: 5000
+  resources:
+    requests:
+      memory: "64Mi"
+      cpu: "64m"
+    limits:
+      memory: "128Mi"
+      cpu: "128m"
+
+hpa:
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+    - type: Resource  
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 50
+
+service:
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 5000
+    # type: NodePort
+
+ingress:
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-loxe-prod"
+  rules:
+  - host: prod.loxehate.fun
+    paths:
+      - path: "/"
+        pathType: Prefix
+        servicePort: 8000
+      - path: "/api"
+        pathType: Prefix
+        servicePort: 8000
+  tls:
+   - secretName: cert-loxe-ssl-tls
+     hosts:
+       - prod.loxehate.fun
+
+
+# serviceAccount:
+#   # Specifies whether a service account should be created
+# #  create: true
+#   # The name of the service account to use.
+#   # If not set and create is true, a name is generated using the fullname template
+#   name: docker-image
+
+#podSecurityContext: {}
+  # fsGroup: 2000
+
+#securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+#resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# nodeSelector:
+#     helm: javademo1
+
+#tolerations: []
+
+#affinity: {}

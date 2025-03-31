@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.profile }}-{{ .Release.Name }}
+  namespace: {{ .Values.profile }}
+  labels:
+    {{- include "app.labels" . | nindent 4 }} 
+spec:
+  replicas: {{ .Values.deployment.minreplicaCount | default 2 }}
+  selector:
+    matchLabels:
+      {{- include "app.selectorLabels" . | nindent 6 }} 
+  template:
+    metadata:
+      labels:
+        {{- include "app.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image.repository | quote }}
+        imagePullPolicy: {{ .Values.image.pullPolicy | default "always" }}
+        ports:
+        {{- toYaml .Values.deployment.ports | nindent 8 }} 
+        env:
+        - name: "APP_ENV"
+          value: {{ .Values.profile }}
+        resources:
+          {{- toYaml .Values.deployment.resources | nindent 10 }} 
+          

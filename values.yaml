@@ -5,7 +5,7 @@ profile: prod
 
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/imagehubs/hello-python-flask
-  tag: latest
+  tag: main-22fce96
   pullPolicy: Always
 
 ingressClassName: nginx

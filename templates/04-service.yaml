@@ -10,5 +10,4 @@ spec:
   selector:
     {{- include "app.labels" . | nindent 4 }} 
   ports:
-  {{- toYaml .Values.service.ports | nindent 4 }} 
-  type: LoadBalancer
+  {{- toYaml .Values.service.ports | nindent 4 }}

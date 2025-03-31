@@ -24,3 +24,7 @@ spec:
                 number: {{ .servicePort }}
         {{- end }}
   {{- end }}
+status:
+  loadBalancer:
+    ingress:
+      - ip: 192.168.10.200

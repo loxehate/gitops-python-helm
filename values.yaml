@@ -44,7 +44,8 @@ service:
   - protocol: TCP
     port: 8000
     targetPort: 5000
-    # type: NodePort
+    nodePort: 30002
+    
 
 ingress:
   annotations:

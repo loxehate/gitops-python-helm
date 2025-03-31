@@ -4,7 +4,8 @@
 profile: prod
 
 image:
-  repository: registry.cn-hangzhou.aliyuncs.com/imagehubs/hello-world-flask:latest
+  repository: registry.cn-hangzhou.aliyuncs.com/imagehubs/hello-world-flask
+  tag: latest
   pullPolicy: Always
 
 ingressClassName: nginx

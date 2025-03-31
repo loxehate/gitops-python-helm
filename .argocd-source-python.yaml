@@ -4,5 +4,5 @@ helm:
     value: registry.cn-hangzhou.aliyuncs.com/imagehubs/hello-python-flask
     forcestring: true
   - name: image.tag
-    value: main-b21123f
+    value: main-40d6288-20250331
     forcestring: true

@@ -1,7 +1,7 @@
 # Default values for hello-java.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-profile: prod
+profile: dev
 
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/imagehubs/hello-python-flask
@@ -50,7 +50,7 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-loxe-prod"
   rules:
-  - host: prod.loxehate.fun
+  - host: dev.loxehate.fun
     paths:
       - path: "/"
         pathType: Prefix
@@ -61,7 +61,7 @@ ingress:
   tls:
    - secretName: cert-loxe-ssl-tls
      hosts:
-       - prod.loxehate.fun
+       - dev.loxehate.fun
 
 
 # serviceAccount:
